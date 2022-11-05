@@ -1,4 +1,4 @@
-FROM node:12.16.2-slim
+FROM node:16.3.0-buster-slim
 
 # Install latest yarn
 RUN set -eux \

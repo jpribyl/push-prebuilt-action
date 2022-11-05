@@ -11,12 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Setup node.js
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v3
       with:
-        node-version: 12.x
+        node-version: 16.x
 
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Install dependencies
       run: yarn install --frozen-lockfile --non-interactive
@@ -36,20 +36,19 @@ jobs:
 
     steps:
     - name: Setup node.js
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v3
       with:
-        node-version: 12.x
+        node-version: 16.x
 
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Extract
       id: extract
-      run: |
-        echo "##[set-output name=branch;]${GITHUB_REF#refs/heads/}"
+      run: echo "branch=${GITHUB_REF#refs/heads/}" >> $GITHUB_OUTPUT
 
     - name: Checkout pre-built
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         ref: release-${{ steps.extract.outputs.branch }}
         path: prebuilt
