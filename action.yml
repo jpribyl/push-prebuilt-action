@@ -1,4 +1,4 @@
-name: Push pre-built JavaScript / TypeScript / Docker container GitHub Action
+name: Push pre-built JS / TS / Docker container GitHub Action
 description: Speed up CI execution time by pre-building.
 
 branding:
@@ -6,6 +6,10 @@ branding:
   color: white
 
 inputs:
+  js-override-main:
+    description: The file to override instead of main
+    required: false
+
   committer-name:
     description: The name to set as git `user.name`.
     required: false
@@ -79,6 +83,6 @@ inputs:
     required: false
 
 runs:
-  using: node12
+  using: node16
   # to compile self
   main: ts-dist/main.js
