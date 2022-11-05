@@ -1,4 +1,4 @@
-name: Push pre-built JavaScript / TypeScript / Docker container GitHub Action
+name: Push pre-built JS / TS / Docker container GitHub Action
 description: Speed up CI execution time by pre-building.
 
 branding:
