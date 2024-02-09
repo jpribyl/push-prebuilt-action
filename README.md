@@ -15,12 +15,12 @@ Since there is no need to commit `node_modules`, your GitHub Action can be relea
 with less time for pushes during action development and pulls during CI execution.
 
 > This Action written in TypeScript has been compiled by itself and released.
-> [See pre-built commit](https://github.com/satackey/push-js-action/tree/release-master)
+> [See pre-built commit](https://github.com/jpribyl/push-js-action/tree/release-master)
 
 ### Docker container action
 
 This action builds an image from your Dockerfile, and pushes it to the Docker registry,
-and rewrites `action.yml#rans.image` by pushed tag.
+and rewrites `action.yml#runs.image` with the pushed tag.
 
 The job just pulls Docker image when using the action, and there's no time to build the Dockerfile.
 
@@ -36,7 +36,7 @@ The description `action.yml` can be read as `action.yaml`.
 #### Example (Step only)
 
 ```yaml
-- uses: satackey/push-prebuilt-action@v0.1
+- uses: jpribyl/push-prebuilt-action@v0.2
   with:
     push-branch: release-master
 ```
@@ -111,7 +111,7 @@ The artifacts must be in the dist/ directory and entrypoint must be dist/index.j
 #### Example (step only)
 
 ```yaml
-- uses: satackey/push-prebuilt-action@v0.1
+- uses: jpribyl/push-prebuilt-action@v0.2
   with:
     push-branch: release-<your_branch_name>
     docker-registry: docker.io
@@ -221,19 +221,19 @@ jobs:
 
     steps:
       - name: Setup node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 16.x
+          node-version: 20.x
 
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Output branch name
         id: name
         run: echo "##[set-output name=branch;]${GITHUB_REF#refs/heads/}"
 
       - name: Push
-        uses: satackey/push-prebuilt-action@v0.1
+        uses: jpribyl/push-prebuilt-action@v0.2
         with:
           push-branch: release-${{ steps.name.outputs.branch }}
           # [optional] The commit can be tagged.
@@ -260,14 +260,14 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Output branch name
         id: name
         run: echo "##[set-output name=branch;]${GITHUB_REF#refs/heads/}"
 
       - name: Push
-        uses: satackey/push-prebuilt-action@v0.1
+        uses: jpribyl/push-prebuilt-action@v0.2
         with:
           push-branch: release-${{ steps.name.outputs.branch }}
           # [optional] The commit can be tagged.
