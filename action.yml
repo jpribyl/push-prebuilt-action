@@ -83,6 +83,6 @@ inputs:
     required: false
 
 runs:
-  using: node16
+  using: node20
   # to compile self
   main: ts-dist/main.js

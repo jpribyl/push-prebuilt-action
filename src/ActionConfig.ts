@@ -18,7 +18,7 @@ export interface ActionConfig {
     };
   };
   runs: {
-    using: "docker" | "node16";
+    using: "docker" | "node20";
     [key: string]: any;
   };
   branding?: {
@@ -59,7 +59,7 @@ export function assertIsDockerActionConfig(
 
 export interface JavaScriptActionConfig extends ActionConfig {
   runs: {
-    using: "node16";
+    using: "node20";
     main: string;
     pre?: string;
     "pre-if"?: string;
